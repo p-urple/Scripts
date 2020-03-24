@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# kill any currently running processes
+killall -q ckb-next &
+killall -q compton &
+#killall -q polybar &
+
+# pause to let processes be killed
+sleep 0.1
+
+# start apps in background
+ckb-next -b &
+compton -b &
+#polybar barname -r &

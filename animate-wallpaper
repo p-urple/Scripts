@@ -1,0 +1,120 @@
+#!/bin/bash
+
+scalar=0
+fps=15
+style=scale
+args=( "$@" )
+
+for i in "${!args[@]}"
+do
+    if [[ "${args[i]}" == -h || "${args[i]}" == --help ]]
+    then
+        echo "animate-wallpaper [options] /path/to/.gif"
+        echo "animate-wallpaper /path/to/.gif [options]"
+        echo "animate-wallpaper [options]"
+        echo ""
+        echo "-h, --help"
+        echo "      Displays this message"
+        echo ""
+        echo "-s --style [fill|max|scale]"
+        echo "      Sets the feh background setting according to the feh documentation."
+        echo "      fill  -> --bg-fill"
+        echo "      max   -> --bg-max"
+        echo "      scale -> --bg-scale"
+        echo ""
+        echo "-f --fps [number]"
+        echo "      Sets the fps of the video used when passing a .mp4 as input."
+        echo "      Has no effect on .gif backgrounds."
+        echo ""
+        echo "-k, --kill"
+        echo "      Kills any animate-wallpaper processes running in the background"
+        echo ""
+        echo "--fps-scalar [number]"
+        echo "      Changes the delay between frames for by a factor of 10%."
+        echo "      By default, there is no delay between fames."
+        echo "      Most useful for .gifs that play too quickly."
+        echo ""
+        echo "animate-wallpaper will automatically run whenever a .gif imsage is passed as an argument."
+        echo "--help and --kill will each take precedence over other flags in the order they are called."
+        exit 1
+    fi
+    if [[ "${args[i]}" == -k || "${args[i]}" == --kill ]]
+    then
+        echo "Killing background animate-wallpaper process..."
+        pkill --signal INT -F /tmp/aw.pid
+        echo "Process killed"
+        kill -s INT "$$"
+    fi
+    if [[ "${args[i]}" == -s || "${args[i]}" == --style ]]
+    then
+        style=${args[((i+1))]}
+        if [[ $style -ne fill && $style -ne max && sytle -ne scale ]]
+        then
+            echo "Style option passed is not a possible parameter. Please check -h for more information."
+            exit 1
+        fi
+    fi
+    if [[ "${args[i]}" == -f || "${args[i]}" == --fps ]]
+    then
+        fps=${args[((i+1))]}
+    fi
+    if [[ "${args[i]}" == --fps-scalar ]]
+    then
+        scale=${args[((i+1))]}
+        scalar=$(echo 0.1*$scale | bc )
+    fi
+    if [[ "${args[i]}" == *.gif ]]
+    then
+        input="${args[i]}"
+    fi
+    if [[ "${args[i]}" == *.mp4 ]]
+    then
+        input="${args[i]}"
+    fi
+done
+
+if [[ $(ps -p $(cat /tmp/aw.pid) -o comm=) == animate-wall* ]]
+then
+    pkill --signal INT -F /tmp/aw.pid
+fi
+if [[ $input == *.gif ]]
+then
+    echo $$ > /tmp/aw.pid
+    animated="$(mktemp -d)"
+    index="$(mktemp)"
+    restore="$(mktemp)"
+    convert -coalesce $input "$animated"/frame.png
+elif [[ $input == *.mp4 ]]
+then
+    echo $$ > /tmp/aw.pid
+    animated="$(mktemp -d)"
+    index="$(mktemp)"
+    restore="$(mktemp)"
+    ffmpeg -i $input -filter:v fps=fps=$fps "$animated"/frame-%04d.png
+else
+    echo "Error. Make sure you are only passing one .gif OR .mp4 as input. See -h for help."
+    exit 1
+fi
+ls $animated > $index
+mv -f ~/.fehbg $restore
+
+# catch SIGINT (ctrl-c)
+trap '
+    mv -f $restore ~/.fehbg
+    ~/.fehbg &
+    rm -rf $animated
+    rm -rf $index
+    rm -rf $restore
+    trap - INT # restore default INT handler
+    kill -s INT "$$"
+    ' INT
+while [ true ]
+do
+    for f in $(sort -n  -k1.7 $index)
+    do
+        # change this number to make the fps faster/slower
+        # should accept floats, but you may have to install a more up-to-date version if floats don't work
+        sleep $scalar
+        feh --bg-$style $animated/$f
+    done
+done
