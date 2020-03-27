@@ -6,6 +6,7 @@ wd=$(pwd)
 if [[ "$(cmp --silent ~/.config/i3/config ~/Dropbox/dotfiles/i3/config)" ]]
 then
     cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config
+    echo "updated i3/config"
     cd ~/Dropbox/dotfiles/
     git add i3/config
     git commit -m "Updated i3 config"
@@ -16,6 +17,7 @@ fi
 if [[ "$(cmp --silent ~/.Xresources ~/Dropbox/dotfiles/.Xresources)" ]]
 then
     cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources
+    echo "updated .Xresources"
     cd ~/Dropbox/dotfiles/
     git add .Xresources
     git commit -m "Updated ~/.Xresources"
@@ -26,6 +28,7 @@ fi
 if [[ "$(cmp --silent ~/.bashrc ~/Dropbox/dotfiles/.bashrc)" ]]
 then
     cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc
+    echo "updated .bashrc"
     cd ~/Dropbox/dotfiles/
     git add .bashrc
     git commit -m "Updated ~/.bashrc"
@@ -36,6 +39,7 @@ fi
 if [[ "$(cmp --silent ~/.vimrc ~/Dropbox/dotfiles/.vimrc)" ]]
 then
     cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc
+    echo "updated .vimrc"
     cd ~/Dropbox/dotfiles/
     git add .vimrc
     git commit -m "Updated ~/.vimrc"
@@ -51,6 +55,7 @@ do
         if [[ "$diff" ]]
         then
             cp ~/Scripts/"$file" ~/Dropbox/dotfiles/"$file"
+            echo "update Scripts/${file}"
             cd ~/Dropbox/dotfiles/
             git add Scripts/"$file"
             git commit -m "Updated Scripts/${file}"
