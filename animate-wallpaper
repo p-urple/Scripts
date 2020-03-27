@@ -76,10 +76,10 @@ done
 if [[ $(ps -p $(cat /tmp/aw.pid) -o comm=) == animate-wall* ]]
 then
     pkill --signal INT -F /tmp/aw.pid
-fi
+fi &
 if [[ $input == *.gif ]]
 then
-    echo $$ > /tmp/aw.pid
+    echo $$ > /tmp/aw.pid 
     animated="$(mktemp -d)"
     index="$(mktemp)"
     restore="$(mktemp)"
