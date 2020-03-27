@@ -1,78 +1,22 @@
 #!/bin/bash
 
-dotnotif=false
 wd=$(pwd)
 
-if [[ "$(cmp --silent ~/.config/i3/config ~/Dropbox/dotfiles/i3/config)" ]]
-then
-    cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config
-    echo "updated i3/config"
-    cd ~/Dropbox/dotfiles/
-    git add i3/config
-    git commit -m "Updated i3 config"
-    cd "$wd"
-    dotnotif=true
-fi
-
-if [[ "$(cmp --silent ~/.Xresources ~/Dropbox/dotfiles/.Xresources)" ]]
-then
-    cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources
-    echo "updated .Xresources"
-    cd ~/Dropbox/dotfiles/
-    git add .Xresources
-    git commit -m "Updated ~/.Xresources"
-    cd "$wd"
-    dotnotif=true
-fi
-
-if [[ "$(cmp --silent ~/.bashrc ~/Dropbox/dotfiles/.bashrc)" ]]
-then
-    cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc
-    echo "updated .bashrc"
-    cd ~/Dropbox/dotfiles/
-    git add .bashrc
-    git commit -m "Updated ~/.bashrc"
-    cd "$wd"
-    dotnotif=true
-fi
-
-if [[ "$(cmp --silent ~/.vimrc ~/Dropbox/dotfiles/.vimrc)" ]]
-then
-    cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc
-    echo "updated .vimrc"
-    cd ~/Dropbox/dotfiles/
-    git add .vimrc
-    git commit -m "Updated ~/.vimrc"
-    cd "$wd"
-    dotnotif=true
-fi
-
-for file in ~/Scripts
-do
-    if [[ "$file" == "/home/alex/Scripts/" ]]
-    then
-        diff=$(cmp --silent ~/Scripts/"$file" ~/Dropbox/dotfiles/"$file")
-        if [[ "$diff" ]]
-        then
-            cp ~/Scripts/"$file" ~/Dropbox/dotfiles/"$file"
-            echo "update Scripts/${file}"
-            cd ~/Dropbox/dotfiles/
-            git add Scripts/"$file"
-            git commit -m "Updated Scripts/${file}"
-            cd "$wd"
-            dotnotif=true
-        fi
-    fi
-done
+cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
+cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources && echo "updated .Xresources"
+cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc && echo "updated .bashrc"
+cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc && echo "updated .vimrc"
+cp -rf ~/Scripts ~/Dropbox/dotfiles/ && echo "updated Scripts/"
 
 cd ~/Scripts/
 if [[ $(git status --porcelain) ]]
 then
-    notify-send "Files in ~/Scripts/ have been changed. Please push changes to github."
+    notify-send -t 0 -u critical "Files in ~/Scripts/ have been changed. Please push changes to github."
+fi
+
+cd ~/Dropbox/dotfiles/
+if [[ $(git status --porcelain) ]]
+then
+    notify-send -t 0 -u critical "Files in ~/Dropbox/dotfiles/ have been updated. Please push changes to github."
 fi
 cd "$wd"
-
-if [[ "$dotnotif" ]]
-then
-    notify-send "Files in ~/Dropbox/dotfiles/ have been updated. Please push changes to github."
-fi
