@@ -22,7 +22,6 @@ case $method in
         ;;
 esac
 
-touch $save
-xclip -out -sel clip > $save
+xclip -out -sel clip > "$save"
 
 notify-send "SNAP! Yep. This is going in my cringe compilation."
