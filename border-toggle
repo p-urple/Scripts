@@ -1,0 +1,8 @@
+#!/bin/bash
+MODE=$(i3-msg -t get_tree | jq -r '.. | .nodes? | .[]? | select(.window!=null and .focused==true).border')
+
+if [ $MODE = "normal" ]; then
+  i3-msg border pixel 1
+else
+  i3-msg border normal 1
+fi
