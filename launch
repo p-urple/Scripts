@@ -10,6 +10,6 @@ sleep 0.1
 
 # start apps in background
 ckb-next -b &
-compton -b &
+compton --config ~/.config/compton.conf -b &
 polybar main -r &
 polybar secondary -r &
