@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cp ~/.config/compton.conf ~/Dropbox/dotfiles/compton.conf && echo "updated comton.conf"
 cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
 cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources && echo "updated .Xresources"
 cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc && echo "updated .bashrc"
