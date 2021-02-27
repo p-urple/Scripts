@@ -13,3 +13,9 @@ ckb-next -b &
 compton --config ~/.config/compton.conf -b &
 polybar main -r &
 polybar secondary -r &
+
+# extra start commands
+#compose key
+xmodemap -e "kysym Insert = Multi_key"
+#start dropbox
+dropbox start
