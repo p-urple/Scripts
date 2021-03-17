@@ -5,8 +5,8 @@ cp ~/.config/picom.conf ~/Dropbox/dotfiles/picom.conf && echo "updated comton.co
 cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
 cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources && echo "updated .Xresources"
 cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc && echo "updated .bashrc"
-cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc && echo "updated .vimrc"
 cp -rfa ~/Scripts ~/Dropbox/dotfiles/ && echo "updated Scripts/"
+cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc && echo "updated .vimrc"
 
 cd ~/Scripts/
 if [[ $(git status --porcelain) ]]
