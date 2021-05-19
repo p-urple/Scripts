@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cp ~/.config/zathura/zathurarc && ~/Dropbox/dotfiles/zathurarc && echo "updated zathura config"
+cp ~/.config/zathura/zathurarc ~/Dropbox/dotfiles/zathurarc && echo "updated zathura config"
+cp ~/.config/polybar/config ~/Dropbox/dotfiles/polybar/config && echo "updated polybar/config"
 cp ~/.config/compton.conf ~/Dropbox/dotfiles/compton.conf && echo "updated comton.conf"
 cp ~/.config/picom.conf ~/Dropbox/dotfiles/picom.conf && echo "updated comton.conf"
 cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
