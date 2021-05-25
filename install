@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd /home/$(whoami) && git clone https://github.com/Tyson-Chicken-Nuggets/Scripts && echo "isntalled ~/Scripts"
+
+mkdir ~/.config/polybar && cp polybar/config ~/.config/polybar/config && echo "installed polybar/config"
+mkdir ~/.config/zathura && cp zathurarc ~/.config/zathura/zathurarc && echo "installed zathura config"
+mkdir ~/.config/nvim && cp nvim/init.vim ~/.config/nvim/init.vim && echo "installed nvim/init.vim"
+mkdir ~/.config/i3 && cp ie/config ~/.config/i3/config && echo "installed i3/config"
+cp compton.conf ~/.config/compton.conf && echo "installed compton.conf"
+cp picom.conf ~/.config/picom.conf && echo "installed picom.conf"
+cp .Xresources ~/.Xresources && echo "installed .Xresources"
+cp .bashrc ~/.bashrc && echo "installed .bashrc"
+cp .vimrc ~/.vimrc && echo "installed .vimrc"
