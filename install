@@ -9,5 +9,6 @@ mkdir ~/.config/i3 && cp ie/config ~/.config/i3/config && echo "installed i3/con
 cp compton.conf ~/.config/compton.conf && echo "installed compton.conf"
 cp picom.conf ~/.config/picom.conf && echo "installed picom.conf"
 cp .Xresources ~/.Xresources && echo "installed .Xresources"
+cp .tmux.conf ~/.tmux.conf && echo "installed .tmux.conf"
 cp .bashrc ~/.bashrc && echo "installed .bashrc"
 cp .vimrc ~/.vimrc && echo "installed .vimrc"
