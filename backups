@@ -1,9 +1,12 @@
 #!/bin/bash
 
+cp ~/.config/rofi/config.rasi ~/Dropbox/dotfiles/rofi/config.rasi && echo "updated rofi/config.rasi"
+cp ~/.config/rofi/damn.rasi ~/Dropbox/dotfiles/rofi/damn.rasi && echo "updated rofi/damn.rasi"
 cp ~/.config/polybar/config ~/Dropbox/dotfiles/polybar/config && echo "updated polybar/config"
 cp ~/.config/zathura/zathurarc ~/Dropbox/dotfiles/zathurarc && echo "updated zathura config"
 cp ~/.config/nvim/init.vim ~/Dropbox/dotfiles/nvim/init.vim && echo "updated nvim/init.vim"
 cp ~/.config/compton.conf ~/Dropbox/dotfiles/compton.conf && echo "updated comton.conf"
+cp ~/.config/vifm/vifmrc ~/Dropbox/dotfiles/vifm/vifmrc && echo "updated vifm/vifmrc"
 cp ~/.config/picom.conf ~/Dropbox/dotfiles/picom.conf && echo "updated comton.conf"
 cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
 cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources && echo "updated .Xresources"

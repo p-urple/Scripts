@@ -2,10 +2,16 @@
 
 cd /home/$(whoami) && git clone https://github.com/Tyson-Chicken-Nuggets/Scripts && echo "isntalled ~/Scripts"
 
+cd /home/$(whoami) && git clone https://github.com/Tyson-Chicken-Nuggets/st
+cd st && make clean install && echo "installed Tyson-Chicken-Nuggets/st"
+cd .. && rm -rf st/ && echo "removed st directory"
+
 mkdir ~/.config/polybar && cp polybar/config ~/.config/polybar/config && echo "installed polybar/config"
 mkdir ~/.config/zathura && cp zathurarc ~/.config/zathura/zathurarc && echo "installed zathura config"
 mkdir ~/.config/nvim && cp nvim/init.vim ~/.config/nvim/init.vim && echo "installed nvim/init.vim"
+mkdir ~/.config/vifm && cp vifm/vifmrc ~/.config/vifm/vifmrc && echo "installed vifm/vifmrc"
 mkdir ~/.config/i3 && cp ie/config ~/.config/i3/config && echo "installed i3/config"
+mkdir ~/.config/rofi && cp -R rofi ~/.config/rofi && echo "installed config/rofi"
 cp compton.conf ~/.config/compton.conf && echo "installed compton.conf"
 cp picom.conf ~/.config/picom.conf && echo "installed picom.conf"
 cp .Xresources ~/.Xresources && echo "installed .Xresources"
