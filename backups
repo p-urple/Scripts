@@ -12,8 +12,17 @@ cp ~/.config/i3/config ~/Dropbox/dotfiles/i3/config && echo "updated i3/config"
 cp ~/.Xresources ~/Dropbox/dotfiles/.Xresources && echo "updated .Xresources"
 cp ~/.tmux.conf ~/Dropbox/dotfiles/.tmux.conf && echo "updated .tmux.conf"
 cp ~/.bashrc ~/Dropbox/dotfiles/.bashrc && echo "updated .bashrc"
+cp ~/.zshrc ~/Dropbox/dotfiles/.zshrc && echo "updated .zshrc"
 cp -rfa ~/Scripts ~/Dropbox/dotfiles/ && echo "updated Scripts/"
 cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc && echo "updated .vimrc"
+
+# gtk themes
+mkdir -p ~/Dropbox/dotfiles/.icons
+cp -r ~/.icons/Cupertino-Mojave ~/Dropbox/dotfiles/.icons/
+cp -r ~/.icons/El_Capitan_Cursors ~/Dropbox/dotfiles/.icons/
+mkdir -p ~/Dropbox/dotfiles/.themes
+cp -r ~/.themes/Mojave-dark ~/Dropbox/dotfiles/.themes/
+echo "backed up lxappearance themes"
 
 cd ~/Scripts/
 if [[ $(git status --porcelain) ]]
