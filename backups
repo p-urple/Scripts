@@ -16,14 +16,6 @@ cp ~/.zshrc ~/Dropbox/dotfiles/.zshrc && echo "updated .zshrc"
 cp -rfa ~/Scripts ~/Dropbox/dotfiles/ && echo "updated Scripts/"
 cp ~/.vimrc ~/Dropbox/dotfiles/.vimrc && echo "updated .vimrc"
 
-# gtk themes
-mkdir -p ~/Dropbox/dotfiles/.icons
-cp -r ~/.icons/Cupertino-Mojave ~/Dropbox/dotfiles/.icons/
-cp -r ~/.icons/El_Capitan_Cursors ~/Dropbox/dotfiles/.icons/
-mkdir -p ~/Dropbox/dotfiles/.themes
-cp -r ~/.themes/Mojave-dark ~/Dropbox/dotfiles/.themes/
-echo "backed up lxappearance themes"
-
 cd ~/Scripts/
 if [[ $(git status --porcelain) ]]
 then
