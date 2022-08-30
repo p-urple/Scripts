@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd /home/$(whoami) && git clone https://github.com/Tyson-Chicken-Nuggets/Scripts && echo "isntalled ~/Scripts"
+cd /home/$(whoami) && git clone https://github.com/p-urple/Scripts && echo "isntalled ~/Scripts"
 
-cd /home/$(whoami) && git clone https://github.com/Tyson-Chicken-Nuggets/st
-cd st && make clean install && echo "installed Tyson-Chicken-Nuggets/st"
+cd /home/$(whoami) && git clone https://github.com/p-urple/st
+cd st && make clean install && echo "installed p-urple/st"
 cd .. && rm -rf st/ && echo "removed st directory"
 
 cd /home/$(whoami) && git clone https://github.com/powerline/fonts --depth=1
