@@ -22,6 +22,8 @@ case $method in
         ;;
 esac
 
-xclip -out -sel clip > "$save"
+if [ "$1" = "-s" ]; then
+    xclip -out -sel clip > "$save"
+fi;
 
 notify-send "SNAP! Yep. This is going in my cringe compilation."
